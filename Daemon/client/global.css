@@ -1,0 +1,358 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Light mode specific styles */
+  .light {
+    /* Ensure light background is pure white */
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* Dark mode specific styles */
+  .dark {
+    /* Smooth dark background */
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* Smooth theme transitions */
+  html,
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Prevent FOUC (Flash of Unstyled Content) */
+  .no-transition {
+    transition: none !important;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    /* Optimized for 8GB RAM Android devices */
+    will-change: auto;
+    transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Android AMOLED optimizations */
+  @media (max-width: 430px) {
+    /* Target 6.36" devices */
+    :root {
+      --safe-area-inset-top: env(safe-area-inset-top);
+      --safe-area-inset-bottom: env(safe-area-inset-bottom);
+      --safe-area-inset-left: env(safe-area-inset-left);
+      --safe-area-inset-right: env(safe-area-inset-right);
+    }
+
+    /* AMOLED true black for dark mode */
+    .dark body {
+      background-color: #000000;
+    }
+
+    /* Light mode pure white */
+    .light body {
+      background-color: #ffffff;
+    }
+
+    /* Optimize for 120Hz dynamic refresh */
+    * {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    /* Hardware acceleration for performance */
+    .gpu-accelerated {
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    /* Reduce motion on low-end devices */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  }
+
+  /* Memory-optimized scrolling */
+  * {
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Prevent content shift on mobile */
+  .mobile-viewport-fix {
+    height: -webkit-fill-available;
+  }
+}
+
+@layer utilities {
+  /* Memory-optimized transitions for 8GB RAM */
+  .smooth-transition {
+    @apply transition-all duration-300 ease-out;
+    will-change: auto;
+  }
+
+  /* Mobile-optimized hover lift */
+  .hover-lift {
+    @apply hover:scale-102 hover:shadow-lg transition-all duration-200 ease-out;
+    will-change: transform, box-shadow;
+  }
+
+  /* Touch-optimized press feedback */
+  .press-feedback {
+    @apply active:scale-[0.98] active:brightness-95 transition-all duration-100 ease-out;
+    will-change: transform;
+  }
+
+  /* AMOLED-optimized glow effect */
+  .glow-effect {
+    @apply hover:shadow-[0_0_20px_rgba(99,102,241,0.3)] transition-shadow duration-300;
+    will-change: box-shadow;
+  }
+
+  /* Performance-optimized animations */
+  .blur-entrance {
+    animation: blur-in 0.4s ease-out forwards;
+    will-change: opacity, filter, transform;
+  }
+
+  .scale-entrance {
+    animation: scale-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    will-change: opacity, transform;
+  }
+
+  .slide-up {
+    animation: slide-up 0.3s ease-out forwards;
+    will-change: opacity, transform;
+  }
+
+  .fade-in {
+    animation: fade-in 0.4s ease-out forwards;
+    will-change: opacity;
+  }
+
+  /* 120Hz optimized animations */
+  @media (min-width: 430px) {
+    .smooth-transition {
+      @apply duration-500;
+    }
+
+    .hover-lift {
+      @apply duration-300;
+    }
+
+    .press-feedback {
+      @apply duration-150;
+    }
+  }
+
+  /* Memory-optimized for mobile */
+  @media (max-width: 430px) {
+    .mobile-container {
+      max-width: 100vw;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .mobile-scroll {
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+
+    /* Reduce shadow rendering on mobile */
+    .mobile-shadow {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Optimize text rendering for AMOLED */
+    .amoled-text {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    /* GPU accelerated containers */
+    .mobile-gpu {
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      perspective: 1000px;
+    }
+  }
+
+  /* Safe area utilities for modern Android */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .safe-all {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+}
+
+@keyframes blur-in {
+  from {
+    opacity: 0;
+    filter: blur(20px);
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
