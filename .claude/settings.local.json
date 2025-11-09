@@ -32,7 +32,8 @@
       "Bash(adb uninstall:*)",
       "Bash(adb shell pm dumpsys package:*)",
       "Bash(adb shell input text:*)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
