@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone:*)",
+      "WebFetch(domain:agent.daemonprotocol.com)",
+      "Bash(npm run dev:*)",
+      "Bash(npm test)",
+      "Bash(npm test:*)",
+      "Bash(npm install:*)",
+      "Bash(xcopy:*)",
+      "Bash(robocopy:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run mobile:build)",
+      "Bash(npm run typecheck)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run build:client-only:*)",
+      "Bash(curl:*)",
+      "Bash(nslookup:*)",
+      "Bash(npm run test:*)",
+      "Bash(npm run mobile:run:*)",
+      "Bash(./gradlew:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(npm run mobile:build:apk:*)",
+      "Bash(gradlew.bat assembleDebug:*)",
+      "Bash(./gradlew.bat:*)",
+      "Bash(adb install:*)",
+      "Bash(adb logcat:*)",
+      "Bash(adb shell pm list packages:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(adb uninstall:*)",
+      "Bash(adb shell pm dumpsys package:*)",
+      "Bash(adb shell input text:*)",
+      "Bash(git init:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
